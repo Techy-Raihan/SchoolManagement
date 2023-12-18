@@ -8,44 +8,219 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
 
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background: url('https://source.unsplash.com/PDRFeeDniCk/1200x800') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .top-nav {
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+      z-index: 1000; /* Ensure the navbar is above other elements */
+    }
+
+    .bottom-nav {
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+      z-index: 1000; /* Ensure the navbar is above other elements */
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    nav a {
+      color: white;
+      cursor: pointer;
+    }
+
+    .home {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .transparent-box {
+      opacity: 1; /* Set initial opacity to 0 */
+      max-width: 800px; /* Adjusted the max-width to 800px */
+      height: 400px; /* Adjusted the height to 400px */
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+      color: white;
+      padding: 30px; /* Adjusted the padding to 30px */
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      /* animation: fadeIn 2s ease-in-out; Fade-in animation with a duration of 2 seconds */
+    }
+
+    .contact-info,
+    .about-info,
+    .calendar-info {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 600px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-item:hover .contact-info,
+    .nav-item:hover .about-info,
+    .nav-item:hover .calendar-info {
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <!-- Brand -->
-
-  <a class="navbar-brand" href="/home">School Management System</a>
-
-  <!-- Toggler/collapsibe Button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <!-- Navbar links -->
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
+  <nav class="navbar navbar-expand-md navbar-dark top-nav">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/home">School Management System</a>
+  
+    <!-- Navbar links -->
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" th:href="@{/students}">Student Management</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" th:href="@{/teachers}">Teacher Management</a>
       </li>
-      <li class="nav-item-right">
-        <a class="nav-link" href="#">About</a>
+      <li class="nav-item">
+        <span class="nav-link" onmouseover="showContact()" onmouseout="hideContact()">Contact Us</span>
+        <div id="contactInfo" class="contact-info">
+          <!-- Contact details content -->
+          <h2>Contact Us</h2>
+          <p>If you have any questions or concerns, feel free to reach out to us:</p>
+          <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+          <p>Phone: +1 (123) 456-7890</p>
+          <p>Visit us at:</p>
+          <p>123 School Street<br>Cityville, State 12345<br>United States</p>
+        </div>
       </li>
-      <li class="nav-item-right">
-        <a class="nav-link" href="#">Contact</a>
+      <li class="nav-item">
+        <span class="nav-link" onmouseover="showAbout()" onmouseout="hideAbout()">About</span>
+        <div id="aboutInfo" class="about-info">
+          <!-- About details content -->
+          <h2>About Us</h2>
+          <p>Learn more about our school and its mission:</p>
+          <p>We are dedicated to providing quality education and fostering a supportive learning environment.</p>
+          <p>Address: 123 School Street, Cityville, State 12345</p>
+          <p>Contact: info@example.com</p>
+        </div>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" onmouseover="showCalendar()" onmouseout="hideCalendar()">School Calendar</span>
+        <div id="calendarInfo" class="calendar-info">
+          <!-- Calendar details content -->
+          <h2>School Calendar</h2>
+          <!-- Add calendar content here -->
+        </div>
       </li>
     </ul>
+  </nav>
+
+  <div class="home">
+    <div class="transparent-box">
+      <h2>School Information</h2>
+      <p>Welcome to our school! We are committed to providing quality education and fostering a supportive learning environment for our students.</p>
+      <p>Address: 123 School Street, Cityville, State 12345</p>
+      <p>Contact: info@example.com | Phone: +1 (123) 456-7890</p>
+    </div>
   </div>
-</nav>
 
-<div class="home">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-bottom bottom-nav">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/home">School Name</a>
+  
+    <!-- Social Media Icons -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.facebook.com" target="_blank">
+          <i class="fab fa-facebook"></i>Facebook
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://twitter.com" target="_blank">
+          <i class="fab fa-twitter"></i>Twitter
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.instagram.com" target="_blank">
+          <i class="fab fa-instagram"></i>Instagram
+        </a>
+      </li>
+      <!-- Add more social media icons as needed -->
+    </ul>
+  
+    <!-- Site Information -->
+    <div class="navbar-text">
+      &copy; 2023 School Name. All rights reserved.
+    </div>
+  </nav>
+  
 
-  <img src="D:\School.jpg" alt="School">
-</div>
+  <script>
+    function showContact() {
+      document.getElementById("contactInfo").style.display = 'block';
+    }
 
-<!--  <img src="D:\School.jpg" alt="School">-->
+    function hideContact() {
+      document.getElementById("contactInfo").style.display = 'none';
+    }
 
+    function showAbout() {
+      document.getElementById("aboutInfo").style.display = 'block';
+    }
+
+    function hideAbout() {
+      document.getElementById("aboutInfo").style.display = 'none';
+    }
+
+    function showCalendar() {
+      document.getElementById("calendarInfo").style.display = 'block';
+    }
+
+    function hideCalendar() {
+      document.getElementById("calendarInfo").style.display = 'none';
+    }
+
+    function showContactBottom() {
+      document.getElementById("contactInfoBottom").style.display = 'block';
+    }
+
+    function hideContactBottom() {
+      document.getElementById("contactInfoBottom").style.display = 'none';
+    }
+
+    function showAboutBottom() {
+      document.getElementById("aboutInfoBottom").style.display = 'block';
+    }
+
+    function hideAboutBottom() {
+      document.getElementById("aboutInfoBottom").style.display = 'none';
+    }
+
+    function showCalendarBottom() {
+      document.getElementById("calendarInfoBottom").style.display = 'block';
+    }
+
+    function hideCalendarBottom() {
+      document.getElementById("calendarInfoBottom").style.display = 'none';
+    }
+  </script>
 </body>
 </html>
