@@ -8,82 +8,131 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
 
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
+        <style>
+          body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+          }
+      
+          body {
+            background: url('https://source.unsplash.com/PDRFeeDniCk/1200x800') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+      
+          .top-nav {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+            z-index: 1000; /* Ensure the navbar is above other elements */
+          }
+      
+          .bottom-nav {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+            z-index: 1000; /* Ensure the navbar is above other elements */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+          }
+    
+      
+          nav a {
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out; /* Add transition for smooth zoom effect */
+          }
+      
+          .home {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+          }
+      
+          .contact-info,
+          .about-info,
+          .calendar-info {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 600px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: aliceblue;
+          }
 
-    body {
-      background: url('https://source.unsplash.com/PDRFeeDniCk/1200x800') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+          .nav-item:hover .contact-info,
+          .nav-item:hover .about-info,
+          .nav-item:hover .calendar-info {
+            display: block;
+            /* transform: translate(-50%, -50%) scale(1.1); */
+          }
 
-    .top-nav {
-      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
-      z-index: 1000; /* Ensure the navbar is above other elements */
-    }
+          .left-menu-container {
+            position: fixed;
+            top: 50%;
+            left: 10px;
+            /* Add some margin to the left side */
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 200px;
+            /* Set the maximum width of the container */
+        }
 
-    .bottom-nav {
-      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
-      z-index: 1000; /* Ensure the navbar is above other elements */
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
+        .menu-item {
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+        }
 
-    nav a {
-      color: white;
-      cursor: pointer;
-    }
+        .menu-item:hover {
+            transform: scale(1.1);
+        }
 
-    .home {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
+        .menu-item i {
+            margin-right: 10px;
+        }
 
-    .transparent-box {
-      opacity: 1; /* Set initial opacity to 0 */
-      max-width: 800px; /* Adjusted the max-width to 800px */
-      height: 400px; /* Adjusted the height to 400px */
-      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-      color: white;
-      padding: 30px; /* Adjusted the padding to 30px */
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      /* animation: fadeIn 2s ease-in-out; Fade-in animation with a duration of 2 seconds */
-    }
+        .menu-item span {
+            flex: 1;
+        }
 
-    .contact-info,
-    .about-info,
-    .calendar-info {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 600px;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        .admission-info,
+        .events-info,
+        .news-info {
+            display: none;
+            /* ... (existing styles for hidden details) ... */
+        }
 
-    .nav-item:hover .contact-info,
-    .nav-item:hover .about-info,
-    .nav-item:hover .calendar-info {
-      display: block;
-    }
-  </style>
+        .menu-item:hover .admission-info h2 {
+            display: block;
+            transform: scale(1.1);
+        }
+
+        /* Hide the main menu items when details are visible */
+        .admission-info:hover span {
+            display: none;
+        }
+
+        /* Hide the main menu items when details are visible
+        .admission-info:hover {
+            display: none;
+        } */
+      </style>
+    </style>
 </head>
 
 <body>
@@ -105,7 +154,7 @@
           <!-- Contact details content -->
           <h2>Contact Us</h2>
           <p>If you have any questions or concerns, feel free to reach out to us:</p>
-          <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+          <p>Email: <a>info@example.com</a></p>
           <p>Phone: +1 (123) 456-7890</p>
           <p>Visit us at:</p>
           <p>123 School Street<br>Cityville, State 12345<br>United States</p>
@@ -132,15 +181,6 @@
       </li>
     </ul>
   </nav>
-
-  <div class="home">
-    <div class="transparent-box">
-      <h2>School Information</h2>
-      <p>Welcome to our school! We are committed to providing quality education and fostering a supportive learning environment for our students.</p>
-      <p>Address: 123 School Street, Cityville, State 12345</p>
-      <p>Contact: info@example.com | Phone: +1 (123) 456-7890</p>
-    </div>
-  </div>
 
   <nav class="navbar navbar-expand-md navbar-dark fixed-bottom bottom-nav">
     <!-- Brand -->
@@ -172,55 +212,118 @@
     </div>
   </nav>
   
+  <div class="home">
+    <div class="left-menu-container">
+      <div class="menu-item" onclick="redirectToAdmissionForm()" onmouseout="hideAdmission()">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Admission</span>
+        <div id="admissionInfo" class="admission-info">
+          <!-- Admission details content -->
+          <!-- <h2>Admission Information</h2> -->
+          <!-- <p>Learn about our admission process and requirements.</p> -->
+          <!-- Add more admission content here -->
+        </div>
+      </div>
 
-  <script>
-    function showContact() {
+      <div class="menu-item" onclick="redirectToApply()" onmouseover="showNews()">
+        <i class="far fa-newspaper"></i>
+        <span>Apply For Teacher</span>
+        <div id="newsInfo" class="news-info">
+            <!-- News details content -->
+            <!-- <h2>School News</h2> -->
+            <!-- Add more news content here -->
+        </div>
+    </div>
+
+        <div class="menu-item" onmouseover="showEvents()" onmouseout="hideEvents()">
+            <i class="far fa-calendar-alt"></i>
+            <span>Events</span>
+            <div id="eventsInfo" class="events-info">
+                <!-- Events details content -->
+                <!-- <h2>Upcoming Events</h2> -->
+                <!-- <p>Check out the exciting events happening at our school.</p> -->
+                <!-- Add more events content here -->
+            </div>
+        </div>
+
+        <div class="menu-item" onmouseover="showNews()" onmouseout="hideNews()">
+            <i class="far fa-newspaper"></i>
+            <span>News</span>
+            <div id="newsInfo" class="news-info">
+                <!-- News details content -->
+                <!-- <h2>School News</h2> -->
+                <!-- Add more news content here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  function redirectToAdmissionForm() {
+    // Redirect to the "students.html" file
+    window.location.href = 'students/new';
+  }
+
+  function redirectToApply(){
+    window.location.href = 'teachers/new'
+  }
+
+  function showContact() {
       document.getElementById("contactInfo").style.display = 'block';
-    }
+  }
 
-    function hideContact() {
+  function hideContact() {
       document.getElementById("contactInfo").style.display = 'none';
-    }
+  }
 
-    function showAbout() {
+  function showAbout() {
       document.getElementById("aboutInfo").style.display = 'block';
-    }
+  }
 
-    function hideAbout() {
+  function hideAbout() {
       document.getElementById("aboutInfo").style.display = 'none';
-    }
+  }
 
-    function showCalendar() {
+  function showCalendar() {
       document.getElementById("calendarInfo").style.display = 'block';
-    }
+  }
 
-    function hideCalendar() {
+  function hideCalendar() {
       document.getElementById("calendarInfo").style.display = 'none';
-    }
+  }
 
-    function showContactBottom() {
-      document.getElementById("contactInfoBottom").style.display = 'block';
-    }
+  function showAdmission() {
+      // Redirect to the admission form instead of showing details
+      redirectToAdmissionForm();
+  }
 
-    function hideContactBottom() {
-      document.getElementById("contactInfoBottom").style.display = 'none';
-    }
+  function hideAdmission() {
+      // No need to hide anything in this case
+  }
 
-    function showAboutBottom() {
-      document.getElementById("aboutInfoBottom").style.display = 'block';
-    }
+  function showEvents() {
+      hideAllDetailsMenu();
+      document.getElementById("eventsInfo").style.display = 'block';
+  }
 
-    function hideAboutBottom() {
-      document.getElementById("aboutInfoBottom").style.display = 'none';
-    }
+  function hideEvents() {
+      document.getElementById("eventsInfo").style.display = 'none';
+  }
 
-    function showCalendarBottom() {
-      document.getElementById("calendarInfoBottom").style.display = 'block';
-    }
+  function showNews() {
+      hideAllDetailsMenu();
+      document.getElementById("newsInfo").style.display = 'block';
+  }
 
-    function hideCalendarBottom() {
-      document.getElementById("calendarInfoBottom").style.display = 'none';
-    }
-  </script>
+  function hideNews() {
+      document.getElementById("newsInfo").style.display = 'none';
+  }
+
+  function hideAllDetailsMenu() {
+      document.getElementById("admissionInfo").style.display = 'none';
+      document.getElementById("eventsInfo").style.display = 'none';
+      document.getElementById("newsInfo").style.display = 'none';
+  }
+</script>
 </body>
 </html>
