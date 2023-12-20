@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="ISO-8859-1">
-  <title>School Management System</title>
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
 
-        <style>
-          body, html {
+<head>
+    <meta charset="ISO-8859-1">
+    <title>School Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        body,
+        html {
             margin: 0;
             padding: 0;
             height: 100%;
-          }
-      
-          body {
+        }
+
+        body {
             background: url('https://source.unsplash.com/PDRFeeDniCk/1200x800') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-          }
-      
-          .top-nav {
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
-            z-index: 1000; /* Ensure the navbar is above other elements */
-          }
-      
-          .bottom-nav {
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
-            z-index: 1000; /* Ensure the navbar is above other elements */
+        }
+
+        .top-nav {
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            align-items: center;
+        }
+
+        .bottom-nav {
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
             position: fixed;
             bottom: 0;
             width: 100%;
-          }
-    
-      
-          nav a {
+        }
+
+        nav a {
             color: white;
             cursor: pointer;
-            transition: transform 0.3s ease-in-out; /* Add transition for smooth zoom effect */
-          }
-      
-          .home {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .home {
             flex: 1;
             display: flex;
             align-items: center;
@@ -51,51 +54,46 @@
             color: white;
             text-align: center;
             padding: 20px;
-          }
-      
-          .contact-info,
-          .about-info,
-          .calendar-info {
+        }
+
+        .contact-info,
+        .about-info,
+        .calendar-info,
+        .menu-box-content {
             display: none;
             position: fixed;
-            top: 50%;
+            top: 17%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             max-width: 600px;
             background-color: rgba(0, 0, 0, 0.8);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             color: aliceblue;
-          }
+        }
 
-          .nav-item:hover .contact-info,
-          .nav-item:hover .about-info,
-          .nav-item:hover .calendar-info {
+        .nav-item:hover .contact-info,
+        .nav-item:hover .about-info,
+        .nav-item:hover .calendar-info,
+        .nav-item:hover .menu-box-content {
             display: block;
-            /* transform: translate(-50%, -50%) scale(1.1); */
-          }
+            color: aliceblue;
+        }
 
-          .left-menu-container {
-            position: fixed;
-            top: 50%;
-            left: 10px;
-            /* Add some margin to the left side */
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 200px;
-            /* Set the maximum width of the container */
+        .left-menu-container {
+            display: flex;
+            align-items: center;
+            color: aliceblue;
         }
 
         .menu-item {
-            margin-bottom: 15px;
+            margin-right: 20px;
             cursor: pointer;
             transition: transform 0.3s ease-in-out;
             display: flex;
             align-items: center;
+            position: relative;
         }
 
         .menu-item:hover {
@@ -114,216 +112,204 @@
         .events-info,
         .news-info {
             display: none;
-            /* ... (existing styles for hidden details) ... */
+            position: absolute;
+            top: 10px;
+            /* top: calc(100% + 25px); */
+            left: 20%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: aliceblue;
         }
 
-        .menu-item:hover .admission-info h2 {
-            display: block;
-            transform: scale(1.1);
+        .menu-box-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
 
-        /* Hide the main menu items when details are visible */
-        .admission-info:hover span {
-            display: none;
+        .menu-box-content a {
+            color: white;
+            text-decoration: none;
         }
 
-        /* Hide the main menu items when details are visible
-        .admission-info:hover {
-            display: none;
-        } */
-      </style>
+        .menu-box-content a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark top-nav">
-    <!-- Brand -->
-    <a class="navbar-brand" href="/home">School Management System</a>
-  
-    <!-- Navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/students}">Student Management</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/teachers}">Teacher Management</a>
-      </li>
-      <li class="nav-item">
-        <span class="nav-link" onmouseover="showContact()" onmouseout="hideContact()">Contact Us</span>
-        <div id="contactInfo" class="contact-info">
-          <!-- Contact details content -->
-          <h2>Contact Us</h2>
-          <p>If you have any questions or concerns, feel free to reach out to us:</p>
-          <p>Email: <a>info@example.com</a></p>
-          <p>Phone: +1 (123) 456-7890</p>
-          <p>Visit us at:</p>
-          <p>123 School Street<br>Cityville, State 12345<br>United States</p>
-        </div>
-      </li>
-      <li class="nav-item">
-        <span class="nav-link" onmouseover="showAbout()" onmouseout="hideAbout()">About</span>
-        <div id="aboutInfo" class="about-info">
-          <!-- About details content -->
-          <h2>About Us</h2>
-          <p>Learn more about our school and its mission:</p>
-          <p>We are dedicated to providing quality education and fostering a supportive learning environment.</p>
-          <p>Address: 123 School Street, Cityville, State 12345</p>
-          <p>Contact: info@example.com</p>
-        </div>
-      </li>
-      <li class="nav-item">
-        <span class="nav-link" onmouseover="showCalendar()" onmouseout="hideCalendar()">School Calendar</span>
-        <div id="calendarInfo" class="calendar-info">
-          <!-- Calendar details content -->
-          <h2>School Calendar</h2>
-          <!-- Add calendar content here -->
-        </div>
-      </li>
-    </ul>
-  </nav>
+    <nav class="navbar navbar-expand-md navbar-dark top-nav">
+        <!-- Brand -->
+        <a class="navbar-brand" href="/home">School Management System</a>
 
-  <nav class="navbar navbar-expand-md navbar-dark fixed-bottom bottom-nav">
-    <!-- Brand -->
-    <a class="navbar-brand" href="/home">School Name</a>
-  
-    <!-- Social Media Icons -->
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="https://www.facebook.com" target="_blank">
-          <i class="fab fa-facebook"></i>Facebook
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://twitter.com" target="_blank">
-          <i class="fab fa-twitter"></i>Twitter
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://www.instagram.com" target="_blank">
-          <i class="fab fa-instagram"></i>Instagram
-        </a>
-      </li>
-      <!-- Add more social media icons as needed -->
-    </ul>
-  
-    <!-- Site Information -->
-    <div class="navbar-text">
-      &copy; 2023 School Name. All rights reserved.
-    </div>
-  </nav>
-  
-  <div class="home">
-    <div class="left-menu-container">
-      <div class="menu-item" onclick="redirectToAdmissionForm()" onmouseout="hideAdmission()">
-        <i class="fas fa-graduation-cap"></i>
-        <span>Admission</span>
-        <div id="admissionInfo" class="admission-info">
-          <!-- Admission details content -->
-          <!-- <h2>Admission Information</h2> -->
-          <!-- <p>Learn about our admission process and requirements.</p> -->
-          <!-- Add more admission content here -->
-        </div>
-      </div>
+        <!-- Left Menu Box -->
+        <div class="left-menu-container">
+            <div class="menu-item" onmouseover="showAdmission()" onmouseout="hideAdmission()">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Admission</span>
+                <div id="admissionInfo" class="admission-info menu-box-content">
+                    <!-- Admission details content -->
+                    <ul>
+                        <li><a href="#">Apply Online</a></li>
+                        <li><a href="#">Admission Notice</a></li>
+                        <li><a href="#">Fee Structure</a></li>
+                    </ul>
+                </div>
+            </div>
 
-      <div class="menu-item" onclick="redirectToApply()" onmouseover="showNews()">
-        <i class="far fa-newspaper"></i>
-        <span>Apply For Teacher</span>
-        <div id="newsInfo" class="news-info">
-            <!-- News details content -->
-            <!-- <h2>School News</h2> -->
-            <!-- Add more news content here -->
-        </div>
-    </div>
+            <div class="menu-item" onmouseover="showApply()" onmouseout="hideApply()">
+                <i class="far fa-newspaper"></i>
+                <span>Apply For Teacher</span>
+            </div>
 
-        <div class="menu-item" onmouseover="showEvents()" onmouseout="hideEvents()">
-            <i class="far fa-calendar-alt"></i>
-            <span>Events</span>
-            <div id="eventsInfo" class="events-info">
-                <!-- Events details content -->
-                <!-- <h2>Upcoming Events</h2> -->
-                <!-- <p>Check out the exciting events happening at our school.</p> -->
-                <!-- Add more events content here -->
+            <div class="menu-item" onmouseover="showEvents()" onmouseout="hideEvents()">
+                <i class="far fa-calendar-alt"></i>
+                <span>Events</span>
             </div>
         </div>
 
-        <div class="menu-item" onmouseover="showNews()" onmouseout="hideNews()">
-            <i class="far fa-newspaper"></i>
-            <span>News</span>
-            <div id="newsInfo" class="news-info">
-                <!-- News details content -->
-                <!-- <h2>School News</h2> -->
-                <!-- Add more news content here -->
-            </div>
+        <!-- Navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/students}">Student Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/teachers}">Teacher Management</a>
+            </li>
+            <li class="nav-item">
+                <span class="nav-link" onmouseover="showContact()" onmouseout="hideContact()">Contact Us</span>
+                <div id="contactInfo" class="contact-info">
+                    <!-- Contact details content -->
+                    <h2>Contact Us</h2>
+                    <p>If you have any questions or concerns, feel free to reach out to us:</p>
+                    <p>Email: <a>info@example.com</a></p>
+                    <p>Phone: +1 (123) 456-7890</p>
+                    <p>Visit us at:</p>
+                    <p>123 School Street<br>Cityville, State 12345<br>United States</p>
+                </div>
+            </li>
+            <li class="nav-item">
+                <span class="nav-link" onmouseover="showAbout()" onmouseout="hideAbout()">About</span>
+                <div id="aboutInfo" class="about-info">
+                    <!-- About details content -->
+                    <h2>About Us</h2>
+                    <p>Learn more about our school and its mission:</p>
+                    <p>We are dedicated to providing quality education and fostering a supportive learning
+                        environment.</p>
+                    <p>Address: 123 School Street, Cityville, State 12345</p>
+                    <p>Contact: info@example.com</p>
+                </div>
+            </li>
+            <li class="nav-item">
+                <span class="nav-link" onmouseover="showCalendar()" onmouseout="hideCalendar()">School Calendar</span>
+                <div id="calendarInfo" class="calendar-info">
+                    <!-- Calendar details content -->
+                    <h2>School Calendar</h2>
+                    <!-- Add calendar content here -->
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-bottom bottom-nav">
+        <!-- Brand -->
+        <a class="navbar-brand" href="/home">School Name</a>
+
+        <!-- Social Media Icons -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.facebook.com" target="_blank">
+                    <i class="fab fa-facebook"></i>Facebook
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://twitter.com" target="_blank">
+                    <i class="fab fa-twitter"></i>Twitter
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.instagram.com" target="_blank">
+                    <i class="fab fa-instagram"></i>Instagram
+                </a>
+            </li>
+        </ul>
+
+        <!-- Site Information -->
+        <div class="navbar-text">
+            &copy; 2023 School Name. All rights reserved.
         </div>
+    </nav>
+
+    <div class="home">
+        <script>
+            function redirectToAdmissionForm() {
+                // Redirect to the "students.html" file
+                window.location.href = 'students/new';
+            }
+
+            function redirectToApply() {
+                window.location.href = 'teachers/new'
+            }
+
+            function showContact() {
+                document.getElementById("contactInfo").style.display = 'block';
+            }
+
+            function hideContact() {
+                document.getElementById("contactInfo").style.display = 'none';
+            }
+
+            function showAbout() {
+                document.getElementById("aboutInfo").style.display = 'block';
+            }
+
+            function hideAbout() {
+                document.getElementById("aboutInfo").style.display = 'none';
+            }
+
+            function showCalendar() {
+                document.getElementById("calendarInfo").style.display = 'block';
+            }
+
+            function hideCalendar() {
+                document.getElementById("calendarInfo").style.display = 'none';
+            }
+
+            function showAdmission() {
+                document.getElementById("admissionInfo").style.display = 'block';
+            }
+
+            function hideAdmission() {
+                document.getElementById("admissionInfo").style.display = 'none';
+            }
+
+            function showApply() {
+                document.getElementById("applyMenu").style.display = 'block';
+            }
+
+            function hideApply() {
+                document.getElementById("applyMenu").style.display = 'none';
+            }
+
+            function showEvents() {
+                hideAllDetailsMenu();
+                document.getElementById("eventsMenu").style.display = 'block';
+            }
+
+            function hideEvents() {
+                document.getElementById("eventsMenu").style.display = 'none';
+            }
+
+            function hideAllDetailsMenu() {
+                document.getElementById("admissionInfo").style.display = 'none';
+                document.getElementById("applyMenu").style.display = 'none';
+                document.getElementById("eventsMenu").style.display = 'none';
+            }
+        </script>
     </div>
-</div>
-
-<script>
-  function redirectToAdmissionForm() {
-    // Redirect to the "students.html" file
-    window.location.href = 'students/new';
-  }
-
-  function redirectToApply(){
-    window.location.href = 'teachers/new'
-  }
-
-  function showContact() {
-      document.getElementById("contactInfo").style.display = 'block';
-  }
-
-  function hideContact() {
-      document.getElementById("contactInfo").style.display = 'none';
-  }
-
-  function showAbout() {
-      document.getElementById("aboutInfo").style.display = 'block';
-  }
-
-  function hideAbout() {
-      document.getElementById("aboutInfo").style.display = 'none';
-  }
-
-  function showCalendar() {
-      document.getElementById("calendarInfo").style.display = 'block';
-  }
-
-  function hideCalendar() {
-      document.getElementById("calendarInfo").style.display = 'none';
-  }
-
-  function showAdmission() {
-      // Redirect to the admission form instead of showing details
-      redirectToAdmissionForm();
-  }
-
-  function hideAdmission() {
-      // No need to hide anything in this case
-  }
-
-  function showEvents() {
-      hideAllDetailsMenu();
-      document.getElementById("eventsInfo").style.display = 'block';
-  }
-
-  function hideEvents() {
-      document.getElementById("eventsInfo").style.display = 'none';
-  }
-
-  function showNews() {
-      hideAllDetailsMenu();
-      document.getElementById("newsInfo").style.display = 'block';
-  }
-
-  function hideNews() {
-      document.getElementById("newsInfo").style.display = 'none';
-  }
-
-  function hideAllDetailsMenu() {
-      document.getElementById("admissionInfo").style.display = 'none';
-      document.getElementById("eventsInfo").style.display = 'none';
-      document.getElementById("newsInfo").style.display = 'none';
-  }
-</script>
 </body>
+
 </html>
