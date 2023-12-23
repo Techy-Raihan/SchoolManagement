@@ -1,148 +1,184 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <title>School Management System</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Student Admission Form</title>
     <style>
         body {
-            background-color: rgba(0, 0, 0, 0.7); /* Black with transparency */
-            color: #ffffff; /* Text color */
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: black;
+            color: rgb(163, 176, 249);
         }
 
-        .navbar {
-            background-color: #343a40 !important;
+        h2 {
+            color: rgb(163, 176, 249);
         }
 
-        .navbar-dark .navbar-toggler-icon {
-            background-color: #ffffff;
-        }
-
-        .navbar-dark .navbar-toggler {
-            border-color: #ffffff;
-        }
-
-        .navbar-dark .navbar-nav .nav-link {
-            color: #ffffff;
-        }
-
-        .navbar-dark .navbar-nav .nav-link:hover {
-            color: #ffffff;
-        }
-
-        .container {
+        form {
+            max-width: 600px;
             margin-top: 20px;
         }
 
-        .card {
-            border: 1px solid #ffffff;
-            border-radius: 0.25rem;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-
-        h1 {
-            color: #000000;
-        }
-
         label {
-            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
         }
 
-        .form-container {
-            background-color: rgba(0, 0, 0, 0.7); /* Transparent black background for form */
-            padding: 20px;
-            border-radius: 10px;
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
         }
 
-        .form-container input,
-        .form-container button {
-            margin-bottom: 10px;
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
-        .form-container button {
-            background-color: #000000;
+        /* .consent-checkbox {
+            display: inline-block;
+            /* margin-bottom: 16px; */
+        /* }  */
+
+        button:hover {
+            background-color: #45a049;
         }
 
-        .form-container button:hover {
-            background-color: #000000;
-        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="/home">School Management System</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/home">Home</a>
-                </li>
-            </ul>
-        </div>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/students}">Student Management</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="card">
-                    <h1 class="card-header text-center">Create New Student</h1>
-                    <div class="card-body form-container">
-                        <form th:action="@{/students}" th:object="${student}" method="POST">
-                            <div class="form-group">
-                                <label>Student ID</label>
-                                <input type="number" name="id" th:field="*{id}" class="form-control"
-                                    placeholder="Enter Student ID" />
-                            </div>
-                            <div class="form-group">
-                                <label>Student First Name</label>
-                                <input type="text" name="firstName" th:field="*{firstName}" class="form-control"
-                                    placeholder="Enter Student First Name" />
-                            </div>
-                            <div class="form-group">
-                                <label>Student Last Name</label>
-                                <input type="text" name="lastName" th:field="*{lastName}" class="form-control"
-                                    placeholder="Enter Student Last Name" />
-                            </div>
-                            <div class="form-group">
-                                <label>Student Email</label>
-                                <input type="text" name="email" th:field="*{email}" class="form-control"
-                                    placeholder="Enter Student Email" />
-                            </div>
-                            <div class="form-group">
-                                <label>Course</label>
-                                <input type="text" name="course" th:field="*{course}" class="form-control"
-                                    placeholder="Enter Course Name" />
-                            </div>
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h2>Student Admission Form</h2>
+    <p>Please fill out the form with your information:</p>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <form action="submit_admission_form.php" method="post">
+        <!-- Personal Information -->
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="middleName">Middle Name:</label>
+        <input type="text" id="middleName" name="middleName">
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <!-- Contact Information -->
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" required></textarea>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber">
+
+        <!-- Parent/Guardian Information -->
+        <h3>Parent/Guardian Information</h3>
+        <label for="parentName">Parent/Guardian Name:</label>
+        <input type="text" id="parentName" name="parentName" required>
+
+        <label for="relationship">Relationship to the Student:</label>
+        <input type="text" id="relationship" name="relationship" required>
+
+        <label for="parentOccupation">Parent/Guardian Occupation:</label>
+        <input type="text" id="parentOccupation" name="parentOccupation">
+
+        <!-- Academic Information -->
+        <h3>Academic Information</h3>
+        <label for="previousSchool">Previous School Name:</label>
+        <input type="text" id="previousSchool" name="previousSchool" required>
+
+        <label for="schoolAddress">Previous School Address:</label>
+        <textarea id="schoolAddress" name="schoolAddress" rows="4"></textarea>
+
+        <label for="classApplied">Class Applied For:</label>
+        <input type="text" id="classApplied" name="classApplied" required>
+
+        <label for="academicYear">Academic Year Applying For:</label>
+        <input type="text" id="academicYear" name="academicYear" required>
+
+        <label for="previousPerformance">Previous Academic Performance:</label>
+        <textarea id="previousPerformance" name="previousPerformance" rows="4"></textarea>
+
+        <!-- Health Information -->
+        <h3>Health Information</h3>
+        <label for="medicalConditions">Medical Conditions:</label>
+        <textarea id="medicalConditions" name="medicalConditions" rows="4"></textarea>
+
+        <label for="allergies">Allergies:</label>
+        <textarea id="allergies" name="allergies" rows="4"></textarea>
+
+        <label for="medications">Medications Currently Taking:</label>
+        <textarea id="medications" name="medications" rows="4"></textarea>
+
+        <label for="immunizationHistory">Immunization History:</label>
+        <textarea id="immunizationHistory" name="immunizationHistory" rows="4"></textarea>
+
+        <!-- Extracurricular Activities -->
+        <h3>Extracurricular Activities</h3>
+        <label for="hobbiesInterests">Hobbies and Interests:</label>
+        <textarea id="hobbiesInterests" name="hobbiesInterests" rows="4"></textarea>
+
+        <label for="sportsClubs">Sports or Clubs Participated In:</label>
+        <textarea id="sportsClubs" name="sportsClubs" rows="4"></textarea>
+
+        <!-- Documentation -->
+        <h3>Documentation</h3>
+        <label for="birthCertificate">Birth Certificate:</label>
+        <input type="file" id="birthCertificate" name="birthCertificate">
+
+        <label for="transcripts">Previous School Transcripts/Report Cards:</label>
+        <input type="file" id="transcripts" name="transcripts">
+
+        <label for="photographs">Passport-sized Photographs:</label>
+        <input type="file" id="photographs" name="photographs">
+
+        <label for="idNumber">ID or Social Security Number:</label>
+        <input type="text" id="idNumber" name="idNumber">
+
+        <!-- Special Needs or Accommodations -->
+        <h3>Special Needs or Accommodations</h3>
+        <label for="specialNeeds">Special Needs or Accommodations:</label>
+        <textarea id="specialNeeds" name="specialNeeds" rows="4"></textarea>
+
+        <!-- Language Proficiency -->
+        <h3>Language Proficiency</h3>
+        <label for="firstLanguage">First Language:</label>
+        <input type="text" id="firstLanguage" name="firstLanguage" required>
+
+        <label for="otherLanguages">Other Languages Spoken:</label>
+        <textarea id="otherLanguages" name="otherLanguages" rows="4"></textarea>
+
+        <!-- Declaration and Consent -->
+        <h3>Declaration and Consent</h3>
+        <p>By submitting this form, I confirm that the information provided is accurate and complete. I consent to the
+            collection and use of this information for admission purposes.</p>
+        
+            <div class="consent-checkbox">
+                <input type="checkbox" id="consentCheckbox" name="consentCheckbox" required>
+                <label for="consentCheckbox">I have read and agree to the declaration and consent</label>
+            </div>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 
 </html>
