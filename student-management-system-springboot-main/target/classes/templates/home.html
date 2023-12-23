@@ -13,14 +13,16 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            color: rgb(163, 176, 249);
         }
 
         body {
-            background: url('https://source.unsplash.com/PDRFeeDniCk/1200x800') no-repeat center center fixed;
+            background: url('https://as1.ftcdn.net/v2/jpg/03/69/00/58/1000_F_369005893_UYbUUUHDiB0HT7vs7EpO0JZ4vf830R5K.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            color: rgb(163, 176, 249);
         }
 
         .top-nav {
@@ -41,7 +43,7 @@
         }
 
         nav a {
-            color: white;
+            color: rgb(163, 176, 249);
             cursor: pointer;
             transition: transform 0.3s ease-in-out;
         }
@@ -51,7 +53,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: rgb(163, 176, 249);
             text-align: center;
             padding: 20px;
         }
@@ -59,7 +61,8 @@
         .contact-info,
         .about-info,
         .calendar-info,
-        .menu-box-content {
+        .menu-box-content,
+        .apply-menu-content {
             display: none;
             position: fixed;
             top: 17%;
@@ -70,21 +73,22 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            color: aliceblue;
+            color: rgb(163, 176, 249);
         }
 
         .nav-item:hover .contact-info,
         .nav-item:hover .about-info,
         .nav-item:hover .calendar-info,
-        .nav-item:hover .menu-box-content {
+        .nav-item:hover .menu-box-content,
+        .nav-item:hover .apply-menu-content {
             display: block;
-            color: aliceblue;
+            color: rgb(163, 176, 249);
         }
 
         .left-menu-container {
             display: flex;
             align-items: center;
-            color: aliceblue;
+            color: rgb(163, 176, 249);
         }
 
         .menu-item {
@@ -113,29 +117,85 @@
         .news-info {
             display: none;
             position: absolute;
-            top: 10px;
-            /* top: calc(100% + 25px); */
+            /* top: 10px; */
+            top: calc(100% + 25px);
             left: 20%;
             background-color: rgba(0, 0, 0, 0.8);
             padding: 10px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            color: aliceblue;
+            color: rgb(163, 176, 249);
         }
 
-        .menu-box-content ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+        .menu-box-content,
+        .apply-menu-content {
+            font-size: 16px; /* Adjust the font size for the entire menu content */
+            width: 100%; /* Set the width to 100% */
+            max-width: 1000px; /* Set the maximum width of the menu box */
+            margin: 0 auto; /* Center the menu box */
+    }
+
+    .menu-box-content ul,
+    .apply-menu-content ul {
+        list-style-type: none;
+        padding: 10px;
+        margin: 10px;
+        margin-top: auto;
+    }
+
+    .menu-box-content li,
+    .apply-menu-content li {
+        padding: 10px; /* Adjust the padding for each list item */
+        margin-bottom: 10px; /* Adjust the margin between list items */
+        max-width: 800px;
+    }
+
+    .menu-box-content a 
+    .apply-menu-content a {
+        color: rgb(163, 176, 249);
+        text-decoration: none;
+        font-size: 5px; /* Adjust the font size for menu links */
+        display: block; /* Make each link a block element to force it onto a new line */
+    }
+
+    .menu-box-content a:hover,
+    .apply-menu-content a:hover {
+        text-decoration: underline;
+    }
+
+    .dropdown-menu {
+        background-color: black;
+        color: rgb(163, 176, 249);
+        margin-top: 10px;
+    }
+
+
+        .transparent-box1{
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 300px;
+            margin-left: 20px; /* Adjusted margin for spacing */
+            margin-bottom: 100px;
+            color: rgb(163, 176, 249);
         }
 
-        .menu-box-content a {
-            color: white;
-            text-decoration: none;
+        .transparent-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 300px;
+            margin-left: 20px;
+            margin-bottom: 100px;
+            color: rgb(163, 176, 249);
         }
 
-        .menu-box-content a:hover {
-            text-decoration: underline;
+        h2 {
+            color: #333;
         }
     </style>
 </head>
@@ -145,74 +205,56 @@
         <!-- Brand -->
         <a class="navbar-brand" href="/home">School Management System</a>
 
-        <!-- Left Menu Box -->
-        <div class="left-menu-container">
-            <div class="menu-item" onmouseover="showAdmission()" onmouseout="hideAdmission()">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Admission</span>
-                <div id="admissionInfo" class="admission-info menu-box-content">
-                    <!-- Admission details content -->
-                    <ul>
-                        <li><a href="#">Apply Online</a></li>
-                        <li><a href="#">Admission Notice</a></li>
-                        <li><a href="#">Fee Structure</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="menu-item" onmouseover="showApply()" onmouseout="hideApply()">
-                <i class="far fa-newspaper"></i>
-                <span>Apply For Teacher</span>
-            </div>
-
-            <div class="menu-item" onmouseover="showEvents()" onmouseout="hideEvents()">
-                <i class="far fa-calendar-alt"></i>
-                <span>Events</span>
-            </div>
-        </div>
-
         <!-- Navbar links -->
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/students}">Student Management</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/teachers}">Teacher Management</a>
-            </li>
-            <li class="nav-item">
-                <span class="nav-link" onmouseover="showContact()" onmouseout="hideContact()">Contact Us</span>
-                <div id="contactInfo" class="contact-info">
-                    <!-- Contact details content -->
-                    <h2>Contact Us</h2>
-                    <p>If you have any questions or concerns, feel free to reach out to us:</p>
-                    <p>Email: <a>info@example.com</a></p>
-                    <p>Phone: +1 (123) 456-7890</p>
-                    <p>Visit us at:</p>
-                    <p>123 School Street<br>Cityville, State 12345<br>United States</p>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="admissionDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admission
+                </a>
+                <div class="dropdown-menu" aria-labelledby="admissionDropdown">
+                    <!-- Admission details content -->
+                    <a class="dropdown-item" onclick="redirectToAdmissionForm()">Apply Online</a>
+                    <a class="dropdown-item" onclick="redirectToNotice()">Admission Notice</a>
+                    <a class="dropdown-item" onclick="redirectToFees()">Fee Structure</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <span class="nav-link" onmouseover="showAbout()" onmouseout="hideAbout()">About</span>
-                <div id="aboutInfo" class="about-info">
-                    <!-- About details content -->
-                    <h2>About Us</h2>
-                    <p>Learn more about our school and its mission:</p>
-                    <p>We are dedicated to providing quality education and fostering a supportive learning
-                        environment.</p>
-                    <p>Address: 123 School Street, Cityville, State 12345</p>
-                    <p>Contact: info@example.com</p>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="applyDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Apply For Teacher
+                </a>
+                <div class="dropdown-menu" aria-labelledby="applyDropdown">
+                    <!-- Apply for Teacher details content -->
+                    <a class="dropdown-item" onclick="redirectToApply()">Application Form</a>
+                    <a class="dropdown-item" onclick="redirectToRequirements()">Requirements</a>
+                    <a class="dropdown-item" onclick="redirectToContactHR()">Contact HR</a>
                 </div>
             </li>
+
             <li class="nav-item">
-                <span class="nav-link" onmouseover="showCalendar()" onmouseout="hideCalendar()">School Calendar</span>
-                <div id="calendarInfo" class="calendar-info">
-                    <!-- Calendar details content -->
-                    <h2>School Calendar</h2>
-                    <!-- Add calendar content here -->
-                </div>
+                <a class="nav-link" href="#">Events</a>
             </li>
         </ul>
     </nav>
+
+    <div class="transparent-box">
+        <h2>Welcome to Our School</h2>
+        <p>Discover a world of education and growth for your child. Join us in creating a brighter future!</p>
+    </div>
+
+    <div class="transparent-box1">
+        <h2>Featured Program</h2>
+        <p>Explore our innovative STEM program that sparks curiosity and creativity in every student.</p>
+    </div>
+
+    <!-- <div class="transparent-box box-right">
+        <h2>Another Box on the Right</h2>
+        <p>Additional information or content goes here.</p>
+    </div> -->
+
+    <!-- Your existing body content -->
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-bottom bottom-nav">
         <!-- Brand -->
@@ -243,7 +285,17 @@
         </div>
     </nav>
 
-    <div class="home">
+    <!-- Bootstrap JS and jQuery scripts (make sure you have them included) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    
         <script>
             function redirectToAdmissionForm() {
                 // Redirect to the "students.html" file
@@ -254,62 +306,23 @@
                 window.location.href = 'teachers/new'
             }
 
-            function showContact() {
-                document.getElementById("contactInfo").style.display = 'block';
+            function redirectToNotice() {
+                window.location.href = 'admission_notice'
             }
 
-            function hideContact() {
-                document.getElementById("contactInfo").style.display = 'none';
+            function redirectToFees(){
+                window.location.href = 'fees'
             }
 
-            function showAbout() {
-                document.getElementById("aboutInfo").style.display = 'block';
+            function redirectToRequirements(){
+                window.location.href = 'requirements'
             }
 
-            function hideAbout() {
-                document.getElementById("aboutInfo").style.display = 'none';
-            }
-
-            function showCalendar() {
-                document.getElementById("calendarInfo").style.display = 'block';
-            }
-
-            function hideCalendar() {
-                document.getElementById("calendarInfo").style.display = 'none';
-            }
-
-            function showAdmission() {
-                document.getElementById("admissionInfo").style.display = 'block';
-            }
-
-            function hideAdmission() {
-                document.getElementById("admissionInfo").style.display = 'none';
-            }
-
-            function showApply() {
-                document.getElementById("applyMenu").style.display = 'block';
-            }
-
-            function hideApply() {
-                document.getElementById("applyMenu").style.display = 'none';
-            }
-
-            function showEvents() {
-                hideAllDetailsMenu();
-                document.getElementById("eventsMenu").style.display = 'block';
-            }
-
-            function hideEvents() {
-                document.getElementById("eventsMenu").style.display = 'none';
-            }
-
-            function hideAllDetailsMenu() {
-                document.getElementById("admissionInfo").style.display = 'none';
-                document.getElementById("applyMenu").style.display = 'none';
-                document.getElementById("eventsMenu").style.display = 'none';
+            function redirectToContactHR(){
+                window.location.href = 'contact_hr'
             }
         </script>
-    </div>
+
 </body>
 
 </html>
