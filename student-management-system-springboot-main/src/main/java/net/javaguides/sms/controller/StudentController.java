@@ -38,6 +38,18 @@ public class StudentController {
 		return "create_student";
 		
 	}
+
+	@GetMapping("/admission_notice")
+	public String getNotice()
+	{
+		return "admission_notice";
+	}
+
+	@GetMapping("/fees")
+	public String getFees()
+	{
+		return "fees";
+	}
 	
 	@PostMapping("/students")
 	public String saveStudent(@ModelAttribute("student") Student student) {

@@ -34,6 +34,18 @@ public class TeacherController {
         return "teachers";
     }
 
+    @GetMapping("/requirements")
+    public String getReq()
+    {
+        return "requirements";
+    }
+
+    @GetMapping("/contact_hr")
+    public String getContact()
+    {
+        return "contact_hr";
+    }
+
     @GetMapping("/teachers/new")
     public String createStudentForm(Model model) {
 
