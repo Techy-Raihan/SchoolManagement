@@ -3,210 +3,342 @@
 
 <head>
     <meta charset="ISO-8859-1">
-    <title>School Management System</title>
+    <title>Aligarh Public School</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <style>
         body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            color: rgb(163, 176, 249);
-        }
+html {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    color: rgb(163, 176, 249);
+    background: url('https://as1.ftcdn.net/v2/jpg/03/69/00/58/1000_F_369005893_UYbUUUHDiB0HT7vs7EpO0JZ4vf830R5K.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
 
-        body {
-            background: url('https://as1.ftcdn.net/v2/jpg/03/69/00/58/1000_F_369005893_UYbUUUHDiB0HT7vs7EpO0JZ4vf830R5K.jpg') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            color: rgb(163, 176, 249);
-        }
+body {
+    overflow-y: auto;
+}
 
-        .top-nav {
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            align-items: center;
-        }
+.top-nav {
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    color: rgb(163, 176, 249);
+}
 
-        .bottom-nav {
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+.bottom-nav {
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: black;
+}
 
-        nav a {
-            color: rgb(163, 176, 249);
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
+nav a {
+    color: rgb(163, 176, 249);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
 
-        .home {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgb(163, 176, 249);
-            text-align: center;
-            padding: 20px;
-        }
+.home {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(163, 176, 249);
+    text-align: center;
+    padding: 20px;
+}
 
-        .contact-info,
-        .about-info,
-        .calendar-info,
-        .menu-box-content,
-        .apply-menu-content {
-            display: none;
-            position: fixed;
-            top: 17%;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 600px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            color: rgb(163, 176, 249);
-        }
+.contact-info,
+.about-info,
+.calendar-info,
+.menu-box-content,
+.apply-menu-content {
+    display: none;
+    position: fixed;
+    top: 17%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: rgb(163, 176, 249);
+}
 
-        .nav-item:hover .contact-info,
-        .nav-item:hover .about-info,
-        .nav-item:hover .calendar-info,
-        .nav-item:hover .menu-box-content,
-        .nav-item:hover .apply-menu-content {
-            display: block;
-            color: rgb(163, 176, 249);
-        }
+.nav-item:hover .contact-info,
+.nav-item:hover .about-info,
+.nav-item:hover .calendar-info,
+.nav-item:hover .menu-box-content,
+.nav-item:hover .apply-menu-content {
+    display: block;
+    color: rgb(163, 176, 249);
+}
 
-        .left-menu-container {
-            display: flex;
-            align-items: center;
-            color: rgb(163, 176, 249);
-        }
+.left-menu-container {
+    display: flex;
+    align-items: center;
+    color: rgb(163, 176, 249);
+}
 
-        .menu-item {
-            margin-right: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
+.menu-item {
+    margin-right: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
 
-        .menu-item:hover {
-            transform: scale(1.1);
-        }
+.menu-item:hover {
+    transform: scale(1.1);
+}
 
-        .menu-item i {
-            margin-right: 10px;
-        }
+.menu-item i {
+    margin-right: 10px;
+}
 
-        .menu-item span {
-            flex: 1;
-        }
+.menu-item span {
+    flex: 1;
+}
 
-        .admission-info,
-        .events-info,
-        .news-info {
-            display: none;
-            position: absolute;
-            /* top: 10px; */
-            top: calc(100% + 25px);
-            left: 20%;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            color: rgb(163, 176, 249);
-        }
+.admission-info,
+.events-info,
+.news-info {
+    display: none;
+    position: absolute;
+    top: calc(100% + 25px);
+    left: 20%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: rgb(163, 176, 249);
+}
 
-        .menu-box-content,
-        .apply-menu-content {
-            font-size: 16px; /* Adjust the font size for the entire menu content */
-            width: 100%; /* Set the width to 100% */
-            max-width: 1000px; /* Set the maximum width of the menu box */
-            margin: 0 auto; /* Center the menu box */
+.menu-box-content,
+.apply-menu-content {
+    font-size: 16px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.menu-box-content ul,
+.apply-menu-content ul {
+    list-style-type: none;
+    padding: 10px;
+    margin: 10px;
+    margin-top: auto;
+}
+
+.menu-box-content li,
+.apply-menu-content li {
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 800px;
+}
+
+.menu-box-content a,
+.apply-menu-content a {
+    color: rgb(163, 176, 249);
+    text-decoration: none;
+    font-size: 5px;
+    display: block;
+}
+
+.menu-box-content a:hover,
+.apply-menu-content a:hover {
+    text-decoration: underline;
+}
+
+.dropdown-menu {
+    background-color: black;
+    color: rgb(163, 176, 249);
+    margin-top: 10px;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
     }
-
-    .menu-box-content ul,
-    .apply-menu-content ul {
-        list-style-type: none;
-        padding: 10px;
-        margin: 10px;
-        margin-top: auto;
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
+}
 
-    .menu-box-content li,
-    .apply-menu-content li {
-        padding: 10px; /* Adjust the padding for each list item */
-        margin-bottom: 10px; /* Adjust the margin between list items */
-        max-width: 800px;
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
     }
-
-    .menu-box-content a 
-    .apply-menu-content a {
-        color: rgb(163, 176, 249);
-        text-decoration: none;
-        font-size: 5px; /* Adjust the font size for menu links */
-        display: block; /* Make each link a block element to force it onto a new line */
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
+}
 
-    .menu-box-content a:hover,
-    .apply-menu-content a:hover {
-        text-decoration: underline;
+.transparent-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 300px;
+    margin-bottom: 20px;
+    color: rgb(163, 176, 249);
+    opacity: 0;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.transparent-box:nth-child(1) {
+    animation-name: slideInRight;
+}
+
+.transparent-box:nth-child(2) {
+    animation-name: slideInLeft;
+}
+
+.transparent-box:nth-child(3) {
+    animation-name: slideInRight;
+}
+
+.transparent-box:nth-child(4) {
+    animation-name: slideInLeft;
+}
+
+.transparent-box:nth-child(5) {
+    animation-name: slideInRight;
+}
+
+.transparent-box:nth-child(6) {
+    animation-name: slideInLeft;
+}
+
+.larger-box {
+    width: 400px;
+    height: 300px;
+}
+
+.smaller-box {
+    width: 200px;
+    height: 150px;
+}
+
+.top-boxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    overflow: hidden;
+}
+
+.slideshow {
+    display: flex;
+    animation: slideShow 18s linear infinite;
+}
+
+@keyframes slideShow {
+    0%, 100% {
+        transform: translateX(0);
     }
-
-    .dropdown-menu {
-        background-color: black;
-        color: rgb(163, 176, 249);
-        margin-top: 10px;
+    20%, 40% {
+        transform: translateX(-100%);
     }
+    60%, 80% {
+        transform: translateX(-200%);
+    }
+}
+
+.left-box {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.right-box {
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 100px;
+}
+
+.center-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.top-boxes {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.bottom-boxes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+#image-slideshow {
+    margin-top: 20px;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    align-items: stretch;
+    /* max-height: 400px; */
+}
+
+.carousel-inner {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel {
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Add your other existing styles below... */
 
 
-        .transparent-box1{
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            width: 300px;
-            margin-left: 20px; /* Adjusted margin for spacing */
-            margin-bottom: 100px;
-            color: rgb(163, 176, 249);
-        }
-
-        .transparent-box {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            width: 300px;
-            margin-left: 20px;
-            margin-bottom: 100px;
-            color: rgb(163, 176, 249);
-        }
-
-        h2 {
-            color: #333;
-        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark top-nav">
         <!-- Brand -->
-        <a class="navbar-brand" href="/home">School Management System</a>
+        <a class="navbar-brand" href="/home">ALIGARH PUBLIC SCHOOL</a>
 
         <!-- Navbar links -->
+
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="admissionDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -233,57 +365,114 @@
                 </div>
             </li>
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="applyDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Academics
+                </a>
+                <div class="dropdown-menu" aria-labelledby="applyDropdown">
+                    <!-- Apply for Teacher details content -->
+                    <a class="dropdown-item" onclick="redirectToApply()">School Timings</a>
+                    <a class="dropdown-item" onclick="redirectToRequirements()">School Uniform</a>
+                    <a class="dropdown-item" onclick="redirectToContactHR()">Rules And Regulations</a>
+                    <a class="dropdown-item" onclick="redirectToContactHR()">Results</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="applyDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Facilities
+                </a>
+                <div class="dropdown-menu" aria-labelledby="applyDropdown">
+                    <!-- Apply for Teacher details content -->
+                    <a class="dropdown-item" onclick="redirectToApply()">ClassRoom</a>
+                    <a class="dropdown-item" onclick="redirectToRequirements()">Hostel</a>
+                    <a class="dropdown-item" onclick="redirectToContactHR()">Sports</a>
+                    <a class="dropdown-item" onclick="redirectToContactHR()">Extra Curricular Activities</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="applyDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    About US
+                </a>
+                <div class="dropdown-menu" aria-labelledby="applyDropdown">
+                    <!-- Apply for Teacher details content -->
+                    <a class="dropdown-item" onclick="redirectToApply()">History</a>
+                    <a class="dropdown-item" onclick="redirectToRequirements()">Faculty Teachers</a>
+                    <a class="dropdown-item" onclick="redirectToContactHR()">Our Moto</a>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="#">Events</a>
             </li>
         </ul>
     </nav>
 
-    <div class="transparent-box">
-        <h2>Welcome to Our School</h2>
-        <p>Discover a world of education and growth for your child. Join us in creating a brighter future!</p>
-    </div>
-
-    <div class="transparent-box1">
-        <h2>Featured Program</h2>
-        <p>Explore our innovative STEM program that sparks curiosity and creativity in every student.</p>
-    </div>
-
-    <!-- <div class="transparent-box box-right">
-        <h2>Another Box on the Right</h2>
-        <p>Additional information or content goes here.</p>
-    </div> -->
-
-    <!-- Your existing body content -->
-
-    <nav class="navbar navbar-expand-md navbar-dark fixed-bottom bottom-nav">
-        <!-- Brand -->
-        <a class="navbar-brand" href="/home">School Name</a>
-
-        <!-- Social Media Icons -->
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.facebook.com" target="_blank">
-                    <i class="fab fa-facebook"></i>Facebook
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://twitter.com" target="_blank">
-                    <i class="fab fa-twitter"></i>Twitter
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.instagram.com" target="_blank">
-                    <i class="fab fa-instagram"></i>Instagram
-                </a>
-            </li>
-        </ul>
-
-        <!-- Site Information -->
-        <div class="navbar-text">
-            &copy; 2023 School Name. All rights reserved.
+    <div class="top-boxes">
+        <!-- Left Boxes -->
+        <div class="transparent-box left-box">
+            <h2>Unlock Your Potential</h2>
+            <p>Explore our innovative programs designed to unlock the full potential of every student.</p>
         </div>
-    </nav>
+
+        <div class="transparent-box left-box">
+            <h2>Join the Learning Adventure</h2>
+            <p>Embark on a learning adventure with our engaging and student-centric approach to education.</p>
+        </div>
+
+        <div class="transparent-box left-box">
+            <h2>Discover STEM Excellence</h2>
+            <p>Immerse in our cutting-edge STEM program fostering curiosity and creativity in every learner.</p>
+        </div>
+    </div>
+
+    <!-- <div class="center-box-container"> -->
+        <!-- Center Boxes -->
+
+
+    <!-- </div> -->
+
+    <div class="bottom-boxes">
+        <!-- Right Boxes -->
+        <div class="transparent-box right-box">
+            <h2>Innovation Hub</h2>
+            <p>Step into our innovation hub, where creativity meets education. Unleash your imagination!</p>
+        </div>
+
+        <div class="transparent-box right-box">
+            <h2>Teacher Excellence</h2>
+            <p>Meet our dedicated educators committed to nurturing excellence in teaching and learning.</p>
+        </div>
+
+        <div class="transparent-box right-box">
+            <h2>Community Engagement</h2>
+            <p>Join our vibrant community committed to creating a positive and impactful educational experience.</p>
+        </div>
+    </div>
+
+    <div id="image-slideshow" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Slide 2">
+            </div>
+            <!-- Add more slides as needed -->
+        </div>
+        <a class="carousel-control-prev" href="#image-slideshow" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#image-slideshow" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 
     <!-- Bootstrap JS and jQuery scripts (make sure you have them included) -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
