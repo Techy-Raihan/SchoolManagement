@@ -8,9 +8,6 @@ import net.javaguides.sms.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.javaguides.sms.entity.Student;
-import net.javaguides.sms.repository.StudentRepository;
-import net.javaguides.sms.service.StudentService;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
